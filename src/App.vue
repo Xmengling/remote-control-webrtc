@@ -1,16 +1,34 @@
 <template>
   <div id="app">
-    <HelloWorld />
+    <el-button @click="remoteShow">远程控制</el-button>
+    <!-- 远程控制 -->
+    <remoteControl
+      v-if="remoteControlShow"
+      :visible.sync="remoteControlShow"
+      name="XXX"
+      :serial-number="wisdomId"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import RemoteControl from './components/RemoteControl.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    RemoteControl
+  },
+  data() {
+    return {
+      remoteControlShow: false,
+      wisdomId: '219801A3NB5224M00007' // 控制的设备ID
+    }
+  },
+  methods: {
+    remoteShow() {
+      this.remoteControlShow = true
+    }
   }
 }
 </script>
